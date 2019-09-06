@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>memory-game</ion-title>
+    <!-- Pour afficher le nombe de paires trouvées -->
+    <ion-label slot="end"> {{ numberOfRevealedCards}} sur {{ numberOfDistinctCards}} </ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let card of cardList let pos=index" [size]='12 / numberOfCardsPerRow' (click)='flipCard(card, pos)'>
+              <ion-img [src]='card.currentImg' class="card"></ion-img>
+            </ion-col>
+          </ion-row>
+  </ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <!-- le bouton s'affiche que si la partie est gagnée avec le *ngIf -->
+  <ion-button expand="block" fill="outline" (click)='playAgain()' *ngIf ="numberOfRevealedCards==numberOfDistinctCards">Rejouer</ion-button>
+  </ion-toolbar>
+</ion-footer>
